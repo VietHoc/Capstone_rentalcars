@@ -1,0 +1,35 @@
+Capstone Project: Cho thuê xe.
+
+Yêu cầu:
+Xây dựng 1 ứng dụng web để cho thuê xe ô tô và xe máy.
+Hệ thống chỉ có người thuê xe và quản lý(mod).
+Mỗi thời điểm user được phép tạo tối đa 5 (mặc định, cấu hình được bằng DB) yêu cầu thuê cho các ngày không chồng lên nhau (mỗi người chỉ được thuê 1 xe trong 1 ngày). Thời hạn thuê là theo ngày, được phép thuê tối đa 20 ngày, ngày đầu tiên nhận xe không quá 1 tháng tính từ thời điểm nhận xe. Quá hạn thuê sẽ bị phạt thêm tiền gấp 3 (tính theo tiếng, chia 1 ngày 24h, làm tròn lên theo số h, ví dụ 2,3 tiếng thành 3 tiếng), sau 3 lần quá hạn trong vòng 60 ngày  sẽ phải đóng phạt thêm 500k nếu không sẽ không được thuê tiếp.
+
+Quy trình mượn: 
+Người thuê request xe
+Mod approve
+Khi nhận xe: mod cập nhật status.
+Khi trả xe: xác nhận trả và thu tiền phạt.
+
+Giá xe được tính theo mức giá thông thường (mặc định), có thể cấu hình giá khác theo các ngày trong tuần (từ thứ 2 - thứ 7), và theo khoảng thời gian.
+Thứ tự ưu tiên các loại giá:
+Theo khoảng thời gian (cao nhất).
+Theo ngày.
+Giá mặc định (thấp nhất).
+
+Cần có những trang sau:
+Các màn hình để thực hiện các chức năng đối với user, có xác nhận email (signup, signin, validate email, forget password, profile view & update).
+Trang home cho user, cần liệt kê các lượt thuê trước đây, xe đang thuê (nếu có) và các yêu cầu thuê trong tương lai (nếu có).
+Trang search các xe cho thuê: không cần đăng nhập. Cho phép search theo mức giá, hãng xe, loại xe (ô tô/ xe máy), bắt buộc phải có ngày nhận xe và ngày trả xe. Mỗi lượt thuê chỉ được thuê 1 xe trong suốt khoảng thời gian yêu cầu.
+Trang đặt thuê cần đăng nhập, hiển thị mức giá cho suốt lượt thuê.
+Trang cấu hình chi tiết xe.
+Trang để mod đăng nhập, trang để xem & update thông tin cho mod.
+Trang home của mod: hiển thị các request thuê xe, có thể thực hiện approve hay deny trên trang này..
+Trang để mod xác nhận số tiền phí khi trả xe.
+Trong trang cấu hình chi tiết xe, nếu người dùng đang login là mod thì cần hiển thị các request thuê xe trong vòng 6 tháng trước đây và 1 tháng tới.
+Trang thống kê các khách hàng thuê nhiều nhất, nhiều tiền nhất và các xe được thuê nhiều nhất.
+
+Schedule:
+Week 1: signup, signin, validate email, forget password, profile view & update, CRUD cho xe (mod tạo).
+Week 2: search xe, book request page, book specs page, home cho user.
+Week 3: mod login, approve request mượn, update profile, xác nhận trả cho mod, các lượt thuê theo từng xe và liệt kê xe đang được cho thuê và các lượt đặt thuê.
