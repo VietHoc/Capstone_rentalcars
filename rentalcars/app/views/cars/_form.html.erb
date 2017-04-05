@@ -23,12 +23,5 @@
  <%= f.label "Chi tiết:" %>
   <%= f.text_area :about, class: 'form-control' %>
 
-  <%= f.label "Pick up date:" %>
-  <%= f.date_field :pickup, class: 'form-control' %>
-
-  <%= f.label "Drop off date:" %>
-  <%= f.date_field :dropoff, class: 'form-control' %>
-
-
  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

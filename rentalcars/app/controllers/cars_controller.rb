@@ -7,8 +7,7 @@ class CarsController < ApplicationController
   def search
    @cars = Car.search(params[:search]).paginate(page: params[:page])
  end
-  
-  
+   
   def create
     @car = Car.new(car_params)
     if @car.save
@@ -24,7 +23,7 @@ class CarsController < ApplicationController
   end
 
   def show
-    @cars = Car.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit

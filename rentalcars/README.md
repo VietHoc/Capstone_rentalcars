@@ -26,3 +26,10 @@ add to db: rails generate migration add_pickupday_dropoffday_to_cars pickup:date
 run local host server: rails s
 reset db: rails db:reset
 migrate db: rails db:migrate
+
+Gắn thư mục hiện tại vào project đã tạo trên heroku
+Gõ: heroku git:remote -a ten_website
+$ git push heroku
+$ heroku pg:reset DATABASE
+$ heroku run rails db:migrate
+$ heroku run rails db:seed

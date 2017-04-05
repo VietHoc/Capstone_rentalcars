@@ -62,7 +62,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   # SMTP settings for gmail
   config.action_mailer.delivery_method = :smtp
-  host = 'polar-oasis-54963.herokuapp.com'
+  host = 'rentalcarsdanang.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.smtp_settings = {
      address:              'smtp.gmail.com',
