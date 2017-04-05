@@ -1,0 +1,13 @@
+<h1>Search Result</h1>
+
+<% if @search.search_cars.empty? %>
+	<p>No Records Found</p>
+<% else %>
+	<% @search.search_cars.each do |c| %>
+		<br>
+		<div class="div">
+				<h1><%= link_to  c.brand, c %></h1>	
+				<h3>Đơn giá (/ngày):<%= c.price %> </h3>
+		</div>
+	<%end%>
+<%end%>

@@ -1,0 +1,11 @@
+<% provide(:title, 'All car') %>
+<%= link_to "Creat New Car", new_car_path, class: "btn btn-lg btn-primary" %>
+<h1>Tất cả xe</h1>
+
+<%= will_paginate %>
+
+<ul class="cars">
+   <%= render @cars %>
+</ul>
+
+<%= will_paginate %>

@@ -1,0 +1,20 @@
+<div>
+	<div class="col-sm-4">
+	   <h1>Nhãn hiệu:<%= link_to car.brand, car %></h1>
+	   <h3>Đời xe (Model):<%= link_to car.model, car %></h3>
+	   <h3>Số chỗ:<%= link_to car.seat, car %> </h3>
+	   <h3>Đơn giá (/ngày):<%= link_to car.price, car %> VND </h3>
+	   <h3>Chi tiết:<%= link_to car.about, car %> </h3>
+    
+   	</br>
+   	<% if logged_in? %>
+   		<% if current_user.admin? && !current_user?(@user) %>
+	        <%= link_to "Delete", car, method: :delete, class: "btn btn-primary",
+	                                      data: { confirm: "You sure?" } %>
+	        <%= link_to "Update", edit_car_path(car), class: "btn btn-primary" %>
+        <%else%>
+        	<%= link_to "Thue xe nay", edit_car_path(car), class: "btn btn-primary" %>
+        <% end %>
+    <% end %>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<h1>Advanced search</h1>
+<%= form_for @search, html:{class: "pure-form"} do |s| %>
+	<div class="field">
+		<%= s.label :Search %><br />
+		<%=	s.text_field :brand %>
+	</div>
+
+	<div class="field">
+		<%= s.label :isCar %><br />
+		<%= s.select :isCar, options_for_select(@isCars), :include_blank => true%>
+	</div>
+	<div class="field"> 
+		<p> <%= s.label :pickup, "Pick_up_day:" %> 
+			<%= s.date_field :pickup%>  
+		</p>	
+		<p> <%= s.label :dropoff, "Drop_off_day:" %> 
+		 	<%= s.date_field :dropoff%> 
+		 </p>		
+	</div>
+
+	<div class="actions"><%= s.submit "Search", class: "pure-button pure-button-primary " %>
+		
+	</div>
+<%end%>

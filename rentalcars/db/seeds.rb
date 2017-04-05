@@ -1,4 +1,4 @@
-User.create!(name:  "hoc",
+  User.create!(name:  "hoc",
              email: "viethocpro@gmail.com",
              password:              "viethoc1",
              password_confirmation: "viethoc1",
@@ -18,15 +18,4 @@ User.create!(name:  "hoc",
                activated_at: Time.zone.now)
 end
 
-users = User.order(:created_at).take(6)
-50.times do
-  content = Faker::ChuckNorris.fact
-  users.each { |u| u.microposts.create!(content: content) }
-end
 
-users = User.all
-user  = users.first
-following = users[2..50]
-followers = users[3..40]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }

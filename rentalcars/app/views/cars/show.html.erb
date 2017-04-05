@@ -1,0 +1,15 @@
+<% provide(:title, @cars.model) %>
+<% if logged_in? %>
+   		<% if current_user.admin? && !current_user?(@user) %>
+	       <%= link_to "Creat New Car", new_car_path, class: "btn btn-lg btn-primary" %>
+        <% end %>
+<% end %>
+<div class="row">
+    <%= render @cars%>
+</div>
+<h1>Listing Cars</h1>
+<%= form_tag cars_path, :method => 'get'  do %>
+<%= text_field_tag :search, params[:search]%>
+<%= submit_tag "Search" %>
+<%= link_to "Advanced Search" , new_search_path %>
+<% end %>

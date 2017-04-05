@@ -1,0 +1,34 @@
+<%= form_for(@car) do |f| %>
+  <%= render 'shared/error_messages', object: @car %>
+  <%= f.label "Loại xe:" %>
+	<select name="car[isCar]">
+	 <option value="Ô tô">Ô tô</option>
+	 <option value="Xe máy">Xe máy</option>
+	</select>
+
+ <%= f.label "Nhãn hiệu:" %>
+  <%= f.text_field :brand, class: 'form-control' %>
+
+ <%= f.label "Đời xe (Model):" %>
+  <%= f.text_field :model, class: 'form-control' %>
+
+ <%= f.label "Đơn giá (/ngày):"%>
+  <%= f.number_field :price, class: 'form-control' %>
+  
+
+ <%= f.label "Số chỗ:" %>
+  <%= f.number_field :seat, class: 'form-control' %>
+  
+
+ <%= f.label "Chi tiết:" %>
+  <%= f.text_area :about, class: 'form-control' %>
+
+  <%= f.label "Pick up date:" %>
+  <%= f.date_field :pickup, class: 'form-control' %>
+
+  <%= f.label "Drop off date:" %>
+  <%= f.date_field :dropoff, class: 'form-control' %>
+
+
+ <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+add to db: rails generate migration add_pickupday_dropoffday_to_cars pickup:datetime dropoff:datetime
+run local host server: rails s
+reset db: rails db:reset
+migrate db: rails db:migrate
