@@ -33,3 +33,8 @@ $ git push heroku
 $ heroku pg:reset DATABASE
 $ heroku run rails db:migrate
 $ heroku run rails db:seed
+
+tao chu mo :
+<div class="field">
+	<%= f.text_area :content, placeholder: "Compost new micropost..." %>
+</div>

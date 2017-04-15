@@ -1,0 +1,40 @@
+  
+<%= form_for @request do |f| %>
+  <p>
+    <%= f.label "Model" %><br />
+    <%= Car.find_by(id: params[:car]).model %>
+  </p>
+  <p>
+    <%= f.label "Đơn giá" %><br />
+    <%= Car.find_by(id: params[:car]).price %>
+  </p>
+  
+  <p>
+    <%= f.label "Ngày nhận"  %><br />
+    <%= f.date_field :pickup , :id => "ngay-muon"%>
+  </p>
+  <p>
+    <%= f.label "Ngày trả" %><br />
+    <%= f.date_field :dropoff , :id => "ngay-tra"%>
+  </p>  
+  <%= hidden_field_tag :car_id, params[:car] %>
+
+  <div>
+  <button id="do">Tam Tinh</button>
+  <p id="result"></p>
+  <br>
+  </div>
+ 
+  <p><%= f.submit "Request" %></p>
+  
+   <script >
+   $('#do').click(function(e) {
+      e.preventDefault();
+      let ngayMuon = new Date($('#ngay-muon').val()).getTime();
+      let ngayTra = new Date($('#ngay-tra').val()).getTime();
+      let soNgay = (ngayTra - ngayMuon)/1000/60/60/24;
+
+      $('#result').html(soNgay*<%= Car.find_by(id: params[:car]).price %>);
+    });
+ </script>
+<% end %>

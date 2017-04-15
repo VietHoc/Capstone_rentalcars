@@ -23,7 +23,8 @@ class CarsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    session[:car_id] = params[:id].to_i
+    @car = Car.find(params[:id])
   end
 
   def edit

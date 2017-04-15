@@ -1,4 +1,8 @@
   Rails.application.routes.draw do
+  get 'requests/new'
+
+  get 'rewuests/new'
+
   get 'request/new'
 
   get 'cars/new'
@@ -29,6 +33,6 @@
   resources :searches
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
-
+  resources :requests
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

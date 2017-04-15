@@ -1,0 +1,14 @@
+<h1>Tất cả các yêu cầu</h1>
+<ul>
+  <% get_requestcar.each do |e| %>
+      <tr>
+        <td><%= Car.find_by(id: e.car_id).brand%></td>
+        <td><%= Car.find_by(id: e.car_id).model %></td>
+        <td><%= User.find_by(id: e.user_id).name %></td>
+        <td><%= e.pickup %></td>
+        <td><%= e.dropoff %></td>
+        <%= render 'shared/approve', object: e %>
+        <%#= render 'shared/deny',    object: e%>
+      </tr>
+  <% end %>
+</ul>

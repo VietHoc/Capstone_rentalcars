@@ -1,10 +1,15 @@
 class StaticPagesController < ApplicationController
   def home
-    if logged_in?
-    end
     @cars = Car.paginate(page: params[:page])
-  end
+    if logged_in?
+    @requests = current_user.requests.where(["status LIKE ? ", -1])
+    @cars = Array.new
+    @date = Array.new
+    @requests.each {|b| @cars << Car.find_by(id: b.car_id)} 
+    end
+    
 
+  end
   def help
   end
 

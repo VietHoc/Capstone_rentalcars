@@ -1,12 +1,16 @@
-<% provide(:title, 'show') %>
+<% provide(:title, @car.model) %>
 <% if logged_in? %>
    		<% if current_user.admin? && !current_user?(@user) %>
 	       <%= link_to "Creat New Car", new_car_path, class: "btn btn-lg btn-primary" %>
         <% end %>
 <% end %>
-<ul class="cars">
-    <%= render @cars %>
-</ul>
+<div class="row">
+    <h1>Nhãn hiệu:<%= @car.brand%></h1>
+	<h3>Đời xe (Model):<%= @car.model %></h3>
+	<h3>Số chỗ:<%= @car.seat %> </h3>
+	<h3>Đơn giá (/ngày)<%= @car.price %> VND </h3>
+	<h3>Chi tiết:<%= @car.about %></h3>
+</div>
 <h1>Listing Cars</h1>
 <%= form_tag cars_path, :method => 'get'  do %>
 <%= text_field_tag :search, params[:search]%>
