@@ -1,10 +1,6 @@
   Rails.application.routes.draw do
   get 'requests/new'
 
-  get 'rewuests/new'
-
-  get 'request/new'
-
   get 'cars/new'
   get 'cars/show'
   get 'cars/edit'

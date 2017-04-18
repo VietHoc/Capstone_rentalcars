@@ -3,13 +3,13 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :get_user, only: :password_create
-
   def index
     @users = User.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    
     @cars = Car.paginate(page: params[:page])
   end
   
@@ -84,4 +84,6 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to root_url unless current_user.admin?
     end
+
+    
 end

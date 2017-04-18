@@ -7,8 +7,6 @@ class StaticPagesController < ApplicationController
     @date = Array.new
     @requests.each {|b| @cars << Car.find_by(id: b.car_id)} 
     end
-    
-
   end
   def help
   end

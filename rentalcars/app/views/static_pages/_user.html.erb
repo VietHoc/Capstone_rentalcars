@@ -1,11 +1,40 @@
-<div class="row">
-      <aside class="col-md-4">
-        <section class="user_info">
-          <%= render 'shared/user_info' %>
-        </section>
-      </aside>
-      <div class="col-md-8">
-        <h3>Lịch sử thuê xe</h3>
-        <%= render @cars %>
-      </div>
+<div> 
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>  
+</div>
+<div class="container">
+    <div class="col-md-6">
+        <h1>Xe đang thuê</h1>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+              <th>User id</th>
+              <th>Ngày nhận</th>
+              <th>Ngày trả</th>
+              <th>Status</th>
+              <th>Đã thuê</th>
+              <th>Car id</th>
+            </tr>
+        </thead>
+        <%= render 'requests/now' %>
+        </table> 
+    </div>
+    
+    <div class="col-md-6">
+        <h1>Lịch sử thuê xe</h1>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+              <th>User id</th>
+              <th>Ngày nhận</th>
+              <th>Ngày trả</th>
+              <th>Status</th>
+              <th>Đã thuê</th>
+              <th>Car id</th>
+            </tr>
+        </thead>
+        <%= render 'requests/history' %>
+        </table> 
+    </div>
 </div>

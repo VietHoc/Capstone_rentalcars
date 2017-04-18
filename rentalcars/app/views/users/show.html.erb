@@ -9,16 +9,55 @@
     </section>
   </aside>
 </div>
-<h1>Listing Cars</h1>
-    <%= form_tag cars_search_path, :method => 'get'  do %>
-   		<%= text_field_tag :search, params[:search]%>
-    	<%= submit_tag "Search" %>
+<% if logged_in? %>
+    <% if current_user.admin? %>
+      <h1>Giao dịch</h1>
+      <div class="col-md-6">
+        <h1>Cho thuê</h1  >
+        <table class="table table-hover">
+        <thead>
+            <tr>
+              <th>User id</th>
+              <th>Ngày nhận</th>
+              <th>Ngày trả</th>
+              <th>Status</th>
+              <th>Chưa thuê</th>
+              <th>Car id</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <%= render 'requests/request'%>
+        </table> 
+      </div>
+      <div class="col-md-6">
+        <h1>Đang thuê</h1>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+              <th>User id</th>
+              <th>Ngày nhận</th>
+              <th>Ngày trả</th>
+              <th>Status</th>
+              <th>Đang thuê</th>
+              <th>Car id</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <%= render 'requests/rental'%>
+        </table> 
+      </div>
+    <% else %>
+      <h1>Listing Cars</h1>
+      <%= form_tag cars_search_path, :method => 'get'  do %>
+        <%= text_field_tag :search, params[:search]%>
+        <%= submit_tag "Search" %>
+      <% end %>
+      <%= link_to "Advanced Search" , new_search_path %>
+      <% provide(:title, 'All car') %>
+      <ul class="cars">
+          <%= render @cars%>
+      </ul>
     <% end %>
-<%= link_to "Advanced Search" , new_search_path %>
-
-<% provide(:title, 'All car') %>
-<ul class="cars">
-   <%= render @cars%>
-</ul>
+<% end %>
 	
   

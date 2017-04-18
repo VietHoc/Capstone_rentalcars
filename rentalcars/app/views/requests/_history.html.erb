@@ -1,0 +1,12 @@
+<tbody>
+ 	<% historied(current_user.id).each do |e| %>
+      <tr>
+        <td><%= e.user_id %></td>
+        <td><%= e.pickup %></td>
+        <td><%= e.dropoff %> </td>
+        <td><%= e.status%> </td>
+        <td><%= e.verified%></td>
+        <td><%= e.car_id%> </td>
+      </tr>
+  <%end%>
+</tbody>

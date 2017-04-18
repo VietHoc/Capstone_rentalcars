@@ -1,0 +1,8 @@
+<td>
+  	<%= form_for object, method: :patch do |f| %>
+	  	<%= hidden_field_tag :hand, true %> 
+	    <%= hidden_field_tag :user_id, object.user_id %>
+	    <%= hidden_field_tag :car_id, object.car_id %>
+	    <%= f.submit "Handing", class: 'btn btn-primary' %>
+	<% end %>
+</td>

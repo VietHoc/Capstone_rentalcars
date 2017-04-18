@@ -11,14 +11,19 @@ class RequestsController < ApplicationController
 
   def create
     if available_to_request?
-      @request = Request.create(user_id: current_user.id,
-                              car_id: params[:car_id],
-                              verified: false,
-                              pickup: params[:request][:pickup],
-                              dropoff: params[:request][:dropoff])
-      flash[:success] = "Request rental has been sent"
-      redirect_to root_path
-    else 
+      if current_user.requests.count == 5
+        flash[:warning] = "Can't send over 5 requests."
+        redirect_to root_path  
+      else  
+        @request = Request.create(user_id: current_user.id,
+                                car_id: params[:car_id],
+                                verified: false,
+                                pickup: params[:request][:pickup],
+                                dropoff: params[:request][:dropoff])
+        flash[:success] = "Request rental has been sent"
+        redirect_to root_path
+      end
+    else
       flash[:warning] = "Date not available. Please choose again."     
       redirect_to new_request_path(car: params[:car_id])
     end
@@ -26,30 +31,31 @@ class RequestsController < ApplicationController
 
   def update
     if current_user.admin?
-      # verify borrow book
-      if params[:verify] 
-          @request.verify_request
-      # Send request extend time borrow books
-      elsif params[:extend_book] 
-        @borrowing.extend_due_time(@borrowing.time_extend)
+      if params[:verify]
+        @request.verify_status_request
+      elsif params[:hand]  
+        @request.handing_request
+        @car.handing_car(params[:car_id])
+      elsif params[:cancel]
+        @request.cancel_request
+        @car.cancel_car
+      else
+        flash[:danger] = "You did something wrong!"
       end
-    # Non admin
-    elsif current_user(@user) && params[:request_extend]
-      check_extend_book(params[:extension_day])
-    else
-      flash[:danger] = "You did something wrong!"
     end
-    redirect_to root_url
+    render 'users/show'
   end
 
   def destroy
-    Borrowing.find(params[:id]).delete
+    Request.find(params[:id]).delete
+    flash[:succes] = "Request deleted"
     redirect_to '/'
+
   end
 
   private 
     def available_to_request?
-      if params[:request][:pickup].blank? || params[:request][:dropoff].blank?  
+      if params[:request][:pickup].blank? || params[:request][:dropoff].blank?  || params[:request][:pickup] > params[:request][:dropoff]
         return false
       elsif
           Car.find(params[:car_id]).dropoff.blank? || Car.find(params[:car_id]).pickup.blank? || (params[:request][:pickup] > Car.find(params[:car_id]).dropoff ) || (params[:request][:dropoff] < Car.find(params[:car_id]).pickup)
